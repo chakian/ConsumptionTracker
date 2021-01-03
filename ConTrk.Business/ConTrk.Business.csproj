@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ConTrk.Entities\ConTrk.Entities.csproj" />
+    <ProjectReference Include="..\ConTrk.Persistence\ConTrk.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>
