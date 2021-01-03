@@ -3,12 +3,8 @@
 namespace ConTrk.Persistence
 {
     [Table("category")]
-    public class CategoryDbo
+    public class CategoryDbo : DboBase
     {
-        [PrimaryKey, AutoIncrement]
-        [Column("id")]
-        public int Id { get; set; }
-
         [Column("parent_id")]
         public int? ParentId { get; set; }
 

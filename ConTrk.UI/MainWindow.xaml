@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConTrk.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="Tüketim Ekleme Formu" Height="450" Width="800">
+    <Window.Resources>
+        <local:CategoryList x:Key="CatList" />
+        <Style TargetType="StackPanel">
+            <Setter Property="DockPanel.Dock" Value="Left"/>
+            <Setter Property="Margin" Value="10,0,10,0"/>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Height" Value="150"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </Window.Resources>
+    <DockPanel x:Name="CategoryDockPanel">
+        <StackPanel>
+            <Label>Kategori - 1</Label>
+            <ListBox ItemsSource="{Binding}"
+               Name="CategoryList_1"
+               ScrollViewer.CanContentScroll="True"
+               IsSynchronizedWithCurrentItem="true"
+               SelectionChanged="CategoryList_SelectionChanged"/>
+        </StackPanel>
+    </DockPanel>
 </Window>

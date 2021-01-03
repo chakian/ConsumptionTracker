@@ -1,25 +1,27 @@
 ﻿using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 
 namespace ConTrk.Persistence
 {
     public class CategoryRepository : RepositoryBase
     {
-        public void InsertCategory()
+        public override string GetTableName() => "category";
+
+        public void InsertCategory(CategoryDbo category)
         {
-            var category = new CategoryDbo
+            var all = GetAllCategories();
+            if (all.Any(c => c.Name.ToUpperInvariant() == category.Name.ToUpperInvariant() && c.ParentId == category.ParentId && c.UnitName == category.UnitName))
             {
-                ParentId=null,
-                Name="Ekmek",
-                UnitName= null
-            };
-            _db.Insert(category);
+                throw new DuplicateNameException("Ayynen bu isimde bir kategori zaten var!");
+            }
+
+            Insert(category);
         }
-
-        public List<CategoryDbo> GetList()
+        
+        public List<CategoryDbo> GetAllCategories()
         {
-            var categories = _db.Query<CategoryDbo>("SELECT * FROM category");
-
-            return categories;
+            return GetAllAsList<CategoryDbo>();
         }
     }
 }
